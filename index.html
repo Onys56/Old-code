@@ -4,27 +4,43 @@
  <title>Mundo!</title>
  <style>
   body {
-    background-image: url("img/background.jpg"); 
     width: cover;
 	height: cover;
     background-size: cover;
     background-repeat: no-repeat;
+	animation: test 2s linear infinite;
 	}
-  #center {
-	display: block;
-    margin: auto;
-    }
+  @keyframes test  {
+    0% {background-image: url("img/background.jpg"); filter:invert(100%);}
+	49.99% {background-image: url("img/background.jpg"); filter:invert(100%);}
+    50% {background-image: url("img/background2.jpg"); filter:invert(0%);}
+    100% {background-image: url("img/background2.jpg"); filter:invert(0%);}
+  }
+  .blink {
+    animation: blink 2s linear infinite;
+	}
+  @keyframes blink {
+    0% { opacity: 1; }
+    49.99% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .tilt {
+    transform: rotate(90deg);
+    display: inline-block;
+    position: relative;
+    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9986295347545738, M12=-0.05233595624294383, M21=0.05233595624294383, M22=0.9986295347545738, sizingMethod='auto expand');
+    zoom: 1;
+  }
  </style>
 </head>
 <body>
- <img id="center" src="img/title.png" style="width:cover">
+  <p style="text-align:center"=""><img class="blink" src="img/title.png" style="width:cover;filter:invert(100%)"></p>
  <br>
  <table>
   <tr>
-   <td><center><font size="50">My OP.GG</center></font></td> 
-  </tr>
-  <tr>
    <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img src="img/opgg.png"></a></td>
+   <td width="10px"><center><font class="tilt" size="50">My OP.GG</center></font></td>  
   </tr>
  </table>
 </body>
