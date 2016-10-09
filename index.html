@@ -79,11 +79,11 @@
   100% {right: -100%}
   }
   @keyframes MAGA {
-  0% {top:0;left:0}
-  16.66% {top:calc(100% - 320px);left:0}
-  50% {top:calc(100% - 320px);left:calc(100% - 239px)}
-  66.66% {top:0;left:calc(100% - 239px)}
-  100% {top:0;left:0}
+  0% {top:0;right:0}
+  16.66% {top:calc(100% - 320px);right:0}
+  50% {top:calc(100% - 320px);right:calc(100% - 239px)}
+  66.66% {top:0;right:calc(100% - 239px)}
+  100% {top:0;right:0}
   }
  </style>
  <script>
@@ -115,7 +115,16 @@
 		document.getElementById('second').style.display='none';
 		}
 	}
-	var stamina = new Audio("resources/stamina.wav");
+  var stamina = new Audio("resources/stamina.wav");
+  var saxAudio = new Audio("resources/sax.wav");
+  function sax (){
+	document.getElementById('donaldHead').style.animation='none';
+	setTimeout(saxFix,1)
+	  function saxFix() {
+		saxAudio.play();
+		document.getElementById('donaldHead').style.animation='rotate 3s linear 5';
+		}
+    } 
  </script>
 </head>
 <body>
@@ -139,6 +148,7 @@
    <p style="font-size:100px;text-align:center"></p>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
    <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina.play()">
+   <img id="donaldHead" src="resources/donaldHead.png" style="display:block;top:calc(50% - 155px);left:calc(50% - 135px);z-index;position:absolute;width:270px;height:310px" onclick="sax()"></img>
   </div></div>
  </div>
 </body>
