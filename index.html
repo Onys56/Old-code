@@ -69,25 +69,42 @@
     margin: auto;
     width: 256px;
   }
-  @keyframes fadeFirst {
-  0% {left: -100%}
-  100% {left: 0%}
-  }
-  @keyframes fadeSecond {
+  @keyframes fadeToLeft {
   0% {left: 0%}
-  100% {left: 100%}
+  100% {left: -100%}
+  }
+  @keyframes fadeToRight {
+  0% {right: 0%}
+  100% {right: -100%}
   }
  </style>
  <script>
   function right() {
-	document.getElementById('first').style.animation='fadeFirst 5s reverse 1';
-	setTimeout(right2,5000);
-  }
-  function right2() {
-	document.getElementById('second').style.display='block';
-	document.getElementById('second').style.animation='fadeSecond 5s reverse 1';
-	document.getElementById('first').style.display='none';
-  }
+	document.getElementById('first').style.animation='none';
+	setTimeout(rightFix,1);
+	  function rightFix() {
+		document.getElementById('first').style.animation='fadeToLeft 3s linear 1';
+		}
+	setTimeout(right2,3000);
+	  function right2() {
+		document.getElementById('second').style.display='block';
+		document.getElementById('second').style.animation='fadeToRight 3s linear reverse 1';
+		document.getElementById('first').style.display='none';
+		}
+	}
+  function left() {
+	document.getElementById('second').style.animation='none'
+	setTimeout(leftFix,1);
+	  function leftFix() {
+		document.getElementById('second').style.animation='fadeToRight 3s linear 1'
+		}
+	setTimeout(left2,3000);
+	  function left2() {
+		document.getElementById('first').style.display='block';
+		document.getElementById('first').style.animation='fadeToLeft 3s linear reverse 1';
+		document.getElementById('second').style.display='none';
+		}
+	}
  </script>
 </head>
 <body>
@@ -106,11 +123,11 @@
  <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
  <img id="rightArrow" src="img/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right()"></img>
  </div></div>
- <div id="second" style="display:none;position:relative;flex:1">
+ <div id="second" style="display:none;position:relative">
   <div id="secondBg">
-   <p style="font-size:100px;text-align:center">Ahoj</p>
-  </div>
-  </div>
+   <p style="font-size:100px;text-align:center">Test</p>
+   <img id="rightArrow" src="img/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
+  </div></div>
  </div>
 </body>
 </html>
