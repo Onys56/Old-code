@@ -4,7 +4,7 @@
  <title>Mundo!</title>
  <style>
   body {
-	background-image:url(img/load.jpg);
+	background-image:url(resources/load.jpg);
 	overflow:hidden;
 	margin:0;
   }
@@ -13,22 +13,24 @@
 	height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-	animation: bgChange 9s linear infinite;
+	animation: bgChange 12s linear infinite;
 	}
   #secondBg {
-	background-image: url(img/background4.jpg);
+	background-image: url(resources/background5.jpg);
 	height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
 	position: relative;
 	}
   @keyframes bgChange  {
-    0% {background-image: url("img/background.jpg");}
-	33.33% {background-image: url("img/background.jpg");}
-    33.331% {background-image: url("img/background2.jpg");}
-    66.66% {background-image: url("img/background2.jpg");}
-	66.661% {background-image: url("img/background3.jpg");}
-    100% {background-image: url("img/background3.jpg");}
+    0% {background-image: url("resources/background.jpg");}
+	24.99% {background-image: url("resources/background.jpg");}
+    25% {background-image: url("resources/background2.jpg");}
+    49.99% {background-image: url("resources/background2.jpg");}
+	50% {background-image: url("resources/background3.jpg");}
+    74.99% {background-image: url("resources/background3.jpg");}
+	75% {background-image: url("resources/background4.jpg");}
+	100% {background-image: url("resources/background4.jpg");}
   }
   @keyframes invert {
     0% {filter:invert(0%)}
@@ -76,9 +78,17 @@
   0% {right: 0%}
   100% {right: -100%}
   }
+  @keyframes MAGA {
+  0% {top:0;left:0}
+  16.66% {top:calc(100% - 320px);left:0}
+  50% {top:calc(100% - 320px);left:calc(100% - 239px)}
+  66.66% {top:0;left:calc(100% - 239px)}
+  100% {top:0;left:0}
+  }
  </style>
  <script>
   function right() {
+	document.title = "Donald!";
 	document.getElementById('first').style.animation='none';
 	setTimeout(rightFix,1);
 	  function rightFix() {
@@ -92,7 +102,8 @@
 		}
 	}
   function left() {
-	document.getElementById('second').style.animation='none'
+	document.title="Mundo!";
+	document.getElementById('second').style.animation='none';
 	setTimeout(leftFix,1);
 	  function leftFix() {
 		document.getElementById('second').style.animation='fadeToRight 3s linear 1'
@@ -104,28 +115,30 @@
 		document.getElementById('second').style.display='none';
 		}
 	}
+	var stamina = new Audio("resources/stamina.wav");
  </script>
 </head>
 <body>
  <div>
  <div id="first" style="position:relative;">
  <div id="firstBg" style="position:relative">
-  <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
+  <p style="text-align:center"><img src="resources/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
  <table style="animation: invert 6s reverse infinite;position:absolute;left:calc(50% - 131px);top:calc(50% - 160px)">
   <thead style="animation: rotate 6s linear infinite;">
   <tr>
    <td width="10px"><center><font size="50">My OP.GG</center></font></td>
   </tr><tr>
-   <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img class="center" src="img/opgg.png"></a></td>
+   <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img class="center" src="resources/opgg.png"></a></td>
   </tr></thead>
  </table>
  <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
- <img id="rightArrow" src="img/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right()"></img>
+ <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right()"></img>
  </div></div>
  <div id="second" style="display:none;position:relative">
   <div id="secondBg">
    <p style="font-size:100px;text-align:center"></p>
-   <img id="rightArrow" src="img/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
+   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
+   <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina.play()">
   </div></div>
  </div>
 </body>
