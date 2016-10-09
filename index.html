@@ -4,11 +4,24 @@
  <title>Mundo!</title>
  <style>
   body {
+	background-image:url(img/load.jpg);
+	overflow:hidden;
+	margin:0;
+  }
+  #firstBg {
     width: cover;
-	height: cover;
+	height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
 	animation: bgChange 9s linear infinite;
+	}
+  #secondBg {
+	background-image: url(img/background3.jpg);
+    width: cover;
+	height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+	position: relative;
 	}
   @keyframes bgChange  {
     0% {background-image: url("img/background.jpg");}
@@ -38,13 +51,6 @@
   80% {transform:scale(1,1);}
   100% {transform:scale(1,1);}
   }
-  .tilt {
-    transform: rotate(90deg);
-    display: inline-block;
-    position: relative;
-    filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9986295347545738, M12=-0.05233595624294383, M21=0.05233595624294383, M22=0.9986295347545738, sizingMethod='auto expand');
-    zoom: 1;
-  }
   @keyframes rotate {
   0% {transform: rotate(0deg);}
   25% {transform: rotate(90deg);}
@@ -63,10 +69,31 @@
     margin: auto;
     width: 256px;
   }
+  @keyframes fadeFirst {
+  0% {left: -100%}
+  100% {left: 0%}
+  }
+  @keyframes fadeSecond {
+  0% {left: 0%}
+  100% {left: 100%}
+  }
  </style>
+ <script>
+  function right() {
+	document.getElementById('first').style.animation='fadeFirst 5s reverse 1';
+	setTimeout(right2,5000);
+  }
+  function right2() {
+	document.getElementById('second').style.display='block';
+	document.getElementById('second').style.animation='fadeSecond 5s reverse 1';
+	document.getElementById('first').style.display='none';
+  }
+ </script>
 </head>
 <body>
  <div>
+ <div id="first" style="position:relative;">
+ <div id="firstBg" style="position:relative">
   <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
  <table align="center" style="animation: invert 6s reverse infinite">
   <thead style="animation: rotate 6s linear infinite;">
@@ -76,7 +103,14 @@
    <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img class="center" src="img/opgg.png"></a></td>
   </tr></thead>
  </table>
- <iframe style="float:middle;position:fixed;animation: move 10s linear infinite" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
+ <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
+ <img id="rightArrow" src="img/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right()"></img>
+ </div></div>
+ <div id="second" style="display:none;position:relative;flex:1">
+  <div id="secondBg">
+   <p style="font-size:100px;text-align:center">Ahoj</p>
+  </div>
+  </div>
  </div>
 </body>
 </html>
