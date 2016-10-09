@@ -8,14 +8,14 @@
 	height: cover;
     background-size: cover;
     background-repeat: no-repeat;
-	animation: bgChange 3s linear infinite;
+	animation: bgChange 9s linear infinite;
 	}
   @keyframes bgChange  {
     0% {background-image: url("img/background.jpg");}
 	33.33% {background-image: url("img/background.jpg");}
-    33.34% {background-image: url("img/background2.jpg");}
+    33.331% {background-image: url("img/background2.jpg");}
     66.66% {background-image: url("img/background2.jpg");}
-	66.67% {background-image: url("img/background3.jpg");}
+	66.661% {background-image: url("img/background3.jpg");}
     100% {background-image: url("img/background3.jpg");}
   }
   @keyframes invert {
@@ -32,10 +32,10 @@
   }
   @keyframes spin {
   0% {transform:scale(1,1);}
-  10% {transform:scale(1,1);}
-  40% {transform:scale(-1,1)}
-  60% {transform:scale(-1,1)}
-  90% {transform:scale(1,1);}
+  20% {transform:scale(1,1);}
+  45% {transform:scale(-1,1)}
+  55% {transform:scale(-1,1)}
+  80% {transform:scale(1,1);}
   100% {transform:scale(1,1);}
   }
   .tilt {
@@ -46,23 +46,37 @@
     zoom: 1;
   }
   @keyframes rotate {
-  0% {transform: rotate(360deg);}
-  25% {transform: rotate(270deg);}
+  0% {transform: rotate(0deg);}
+  25% {transform: rotate(90deg);}
   50% {transform: rotate(180deg);}
-  75% {transform: rotate(90deg);}
-  100% {transform: rotate(0deg);}
+  75% {transform: rotate(270deg);}
+  100% {transform: rotate(360deg);}
+  }
+  @keyframes move {
+  0% {left: calc(50% - 210px)}
+  25% {left: calc(100% - 420px)}
+  75%{left: 0%}
+  100% {left: calc(50% - 210px)}
+  }
+  .center {
+	display: block;
+    margin: auto;
+    width: 256px;
   }
  </style>
 </head>
 <body>
  <div>
-  <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 5s linear infinite;"></p><br><br>
- <table style=";animation: rotate  3s linear infinite" align="center">
+  <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
+ <table align="center" style="animation: invert 6s reverse infinite">
+  <thead style="animation: rotate 6s linear infinite;">
   <tr>
-   <td width="10px" style="animation: invert 2s reverse infinite"><center><font size="50">My OP.GG</center></font></td><tr>
-   </tr><td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img style="animation: invert 2s reverse infinite;"src="img/opgg.png"></a></td>
-  </tr>
+   <td width="10px"><center><font size="50">My OP.GG</center></font></td>
+  </tr><tr>
+   <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img class="center" src="img/opgg.png"></a></td>
+  </tr></thead>
  </table>
+ <iframe style="float:middle;position:fixed;animation: move 10s linear infinite" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
  </div>
 </body>
 </html>
