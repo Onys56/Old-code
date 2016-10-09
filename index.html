@@ -8,19 +8,21 @@
 	height: cover;
     background-size: cover;
     background-repeat: no-repeat;
-	animation: bgChange 2s linear infinite;
+	animation: bgChange 3s linear infinite;
 	}
   @keyframes bgChange  {
     0% {background-image: url("img/background.jpg");}
-	49.99% {background-image: url("img/background.jpg");}
-    50% {background-image: url("img/background2.jpg");}
-    100% {background-image: url("img/background2.jpg");}
+	33.33% {background-image: url("img/background.jpg");}
+    33.34% {background-image: url("img/background2.jpg");}
+    66.66% {background-image: url("img/background2.jpg");}
+	66.67% {background-image: url("img/background3.jpg");}
+    100% {background-image: url("img/background3.jpg");}
   }
   @keyframes invert {
     0% {filter:invert(0%)}
-	49.99% {filter:invert(0%)}
-	50% {filter:invert(100%)}
-	100% {filter:invert(100%)}
+	49.99% {filter:invert(0%);}
+	50% {filter:invert(100%);}
+	100% {filter:invert(100%);}
   }
   @keyframes blink {
     0% { opacity: 1; }
@@ -43,15 +45,22 @@
     filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.9986295347545738, M12=-0.05233595624294383, M21=0.05233595624294383, M22=0.9986295347545738, sizingMethod='auto expand');
     zoom: 1;
   }
+  @keyframes rotate {
+  0% {transform: rotate(360deg);}
+  25% {transform: rotate(270deg);}
+  50% {transform: rotate(180deg);}
+  75% {transform: rotate(90deg);}
+  100% {transform: rotate(0deg);}
+  }
  </style>
 </head>
 <body>
  <div>
-  <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 5s linear infinite;"></p><br>
- <table>
+  <p style="text-align:center"><img src="img/title.png" style="width:cover;animation: spin 5s linear infinite;"></p><br><br>
+ <table style=";animation: rotate  2s linear infinite" align="center">
   <tr>
-   <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img style="animation: invert 2s reverse infinite;"src="img/opgg.png"></a></td>
-   <td width="10px" style="animation: invert 2s reverse infinite;"><center><font class="tilt" size="50">My OP.GG</center></font></td>  
+   <td width="10px" style="animation: invert 2s reverse infinite"><center><font size="50">My OP.GG</center></font></td><tr>
+   </tr><td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img style="animation: invert 2s reverse infinite;"src="img/opgg.png"></a></td>
   </tr>
  </table>
  </div>
