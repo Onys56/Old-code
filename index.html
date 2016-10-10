@@ -115,21 +115,25 @@
 		document.getElementById('second').style.display='none';
 		}
 	}
-  var stamina = new Audio("resources/stamina.wav");
-  var saxAudio = new Audio("resources/sax.wav");
-  function sax (){
-	document.getElementById('donaldHead').style.animation='none';
-	setTimeout(saxFix,1)
+  function sax() {
+	var saxAudio = new Audio("resources/sax.wav");
+	saxAudio.play();
+	document.getElementById('donaldHead').style.animation='rotate 3s linear 5';
+	setTimeout(saxFix,15000);
 	  function saxFix() {
-		saxAudio.play();
-		document.getElementById('donaldHead').style.animation='rotate 3s linear 5';
-		}
-    } 
+		document.getElementById('donaldHead').style.animation='none';
+		}		
+    }
+  function stamina() {
+	var stamina = new Audio("resources/stamina.wav");
+	stamina.play();
+  }
+  
  </script>
 </head>
 <body>
  <div>
- <div id="first" style="position:relative;">
+ <div id="first" style="display:block;position:relative;">
  <div id="firstBg" style="position:relative">
   <p style="text-align:center"><img src="resources/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
  <table style="animation: invert 6s reverse infinite;position:absolute;left:calc(50% - 131px);top:calc(50% - 160px)">
@@ -147,7 +151,7 @@
   <div id="secondBg">
    <p style="font-size:100px;text-align:center"></p>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
-   <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina.play()">
+   <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina()">
    <img id="donaldHead" src="resources/donaldHead.png" style="display:block;top:calc(50% - 155px);left:calc(50% - 135px);z-index;position:absolute;width:270px;height:310px" onclick="sax()"></img>
   </div></div>
  </div>
