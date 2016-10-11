@@ -15,8 +15,7 @@
     background-repeat: no-repeat;
 	animation: bgChange 12s linear infinite;
 	}
-  #secondBg {
-	background-image: url(resources/background5.jpg);
+  .normalBg {
 	height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
@@ -87,41 +86,47 @@
   }
  </style>
  <script>
-  function right() {
-	document.title = "Donald!";
-	document.getElementById('first').style.animation='none';
+  function right(left, right, title) {
+	document.title = title;
+	document.getElementById(left).style.animation='none';
 	setTimeout(rightFix,1);
 	  function rightFix() {
-		document.getElementById('first').style.animation='fadeToLeft 3s linear 1';
+		document.getElementById(left).style.animation='fadeToLeft 2.5s linear 1';
 		}
-	setTimeout(right2,3000);
-	  function right2() {
-		document.getElementById('second').style.display='block';
-		document.getElementById('second').style.animation='fadeToRight 3s linear reverse 1';
-		document.getElementById('first').style.display='none';
+	setTimeout(rightFix2,2500);
+	  function rightFix2() {
+		document.getElementById(right).style.display='block';
+		document.getElementById(right).style.animation='fadeToRight 2.5s linear reverse 1';
+		document.getElementById(left).style.display='none';
 		}
 	}
-  function left() {
-	document.title="Mundo!";
-	document.getElementById('second').style.animation='none';
+  function left(left, right, title) {
+	document.title= title;
+	document.getElementById(right).style.animation='none';
 	setTimeout(leftFix,1);
 	  function leftFix() {
-		document.getElementById('second').style.animation='fadeToRight 3s linear 1'
+		document.getElementById(right).style.animation='fadeToRight 2.5s linear 1'
 		}
-	setTimeout(left2,3000);
-	  function left2() {
-		document.getElementById('first').style.display='block';
-		document.getElementById('first').style.animation='fadeToLeft 3s linear reverse 1';
-		document.getElementById('second').style.display='none';
+	setTimeout(leftFix2,2500);
+	  function leftFix2() {
+		document.getElementById(left).style.display='block';
+		document.getElementById(left).style.animation='fadeToLeft 2.5s linear reverse 1';
+		document.getElementById(right).style.display='none';
 		}
 	}
   function sax() {
 	var saxAudio = new Audio("resources/sax.wav");
 	saxAudio.play();
 	document.getElementById('donaldHead').style.animation='rotate 3s linear 5';
-	setTimeout(saxFix,15000);
+	setTimeout(saxFix,1);
 	  function saxFix() {
+		document.getElementById('donaldHead').onclick="none";
+		document.getElementById('donaldHead').addEventListener("click", none);
+		}
+	setTimeout(saxFix2,15000);
+	  function saxFix2() {
 		document.getElementById('donaldHead').style.animation='none';
+		document.getElementById('donaldHead').addEventListener("click", sax);
 		}		
     }
   function stamina() {
@@ -144,15 +149,19 @@
    <td><a href="http://eune.op.gg/summoner/userName=onysthe%C5%A5ulda"><img class="center" src="resources/opgg.png"></a></td>
   </tr></thead>
  </table>
- <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/Zasx9hjo4WY?controls=0"></iframe>
- <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right()"></img>
+ <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/fmI_Ndrxy14?controls=0"></iframe>
+ <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('first','second','Donald!')"></img>
  </div></div>
  <div id="second" style="display:none;position:relative">
-  <div id="secondBg">
-   <p style="font-size:100px;text-align:center"></p>
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left()"></img>
+  <div class="normalBg" style="background-image: url(resources/background5.jpg)">
    <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina()">
    <img id="donaldHead" src="resources/donaldHead.png" style="display:block;top:calc(50% - 155px);left:calc(50% - 135px);z-index;position:absolute;width:270px;height:310px" onclick="sax()"></img>
+   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('first','second','Mundo!')"></img>
+   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0;display:none" onclick="right('second','third','WIP!')"></img>
+  </div></div>
+  <div id="third" style="display:none;position:relative">
+  <div class="normalBg" style="background-image: url(resources/background6.jpg)">
+   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('second','third','Donald!')"></img>
   </div></div>
  </div>
 </body>
