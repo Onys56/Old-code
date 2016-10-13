@@ -84,6 +84,21 @@
   66.66% {top:0;right:calc(100% - 239px)}
   100% {top:0;right:0}
   }
+  @keyframes tocit {
+	0% {left:0;top:0}
+	25% {left:calc(100% - 304px);top:0}
+	50% {left:calc(100% - 304px);top:calc(100% - 134px)}
+	75% {left:0;top:calc(100% - 134px)}
+	100% {left:0;top:0}
+  }
+  #kalendar {
+	animation: tocit 30s linear infinite;
+	position:absolute;
+	left:calc(50% - 152px);
+	top:calc(50% - 67px);
+	background-color:blue;
+	color:red;
+  }
  </style>
  <script>
   function right(left, right, title) {
@@ -138,7 +153,73 @@
 </head>
 <body>
  <div>
- <div id="first" style="display:block;position:relative;">
+ <div id="zero" style="display:block;position:relative">
+ <div class="normalBg" style="background-image: url(resources/background7.jpg)">
+ <table id="kalendar">
+  <tr align="center">
+	<th width="60">Týden</th>
+	<th width="30">Pon</th>
+	<th width="30">Út</th>
+	<th width="30">St</th>
+	<th width="30">Čt</th>
+	<th width="30">Pá</th>
+	<th width="30">So</th>
+	<th width="30">Ne</th>
+  </tr>
+  <tr align="center">
+	<th>44.</th>
+	<td><i>31</i></td>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>4</td>
+	<td>5</td>
+	<td>7</td>
+  </tr>
+  <tr align="center">
+	<th>45.</th>
+	<td>8</td>
+	<td>9</td>
+	<td>10</td>
+	<td>11</td>
+	<td>12</td>
+	<td>13</td>
+	<td>14</td>
+  </tr>
+  <tr align="center">
+	<th>46.</th>
+	<td>15</td>
+	<td>16</td>
+	<td>17</td>
+	<td>18</td>
+	<td>19</td>
+	<td>20</td>
+	<td>21</td>
+  </tr>
+  <tr align="center">
+	<th>47.</th>
+	<td>22</td>
+	<td>23</td>
+	<td>24</td>
+	<td>25</td>
+	<td>26</td>
+	<td>27</td>
+	<td>28</td>
+  </tr>
+  <tr align="center">
+	<th>48.</th>
+	<td>29</td>
+	<td>30</td>
+	<td><i>1</i></td>
+	<td><i>2</i></td>
+	<td><i>3</i></td>
+	<td><i>4</i></td>
+	<td><i>5</i></td>
+  </tr>
+ </table>
+ <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('zero','first','Mundo!')"></img>
+ </div></div>
+ <div id="first" style="display:none;position:relative;">
  <div id="firstBg" style="position:relative">
   <p style="text-align:center"><img src="resources/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
  <table style="animation: invert 6s reverse infinite;position:absolute;left:calc(50% - 131px);top:calc(50% - 160px)">
@@ -151,6 +232,7 @@
  </table>
  <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/fmI_Ndrxy14?controls=0"></iframe>
  <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('first','second','Donald!')"></img>
+ <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('zero','first','Zbytečný kalendář')"></img>
  </div></div>
  <div id="second" style="display:none;position:relative">
   <div class="normalBg" style="background-image: url(resources/background5.jpg)">
