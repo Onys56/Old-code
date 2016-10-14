@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8">
- <title>Zbytečný kalendář</title>
+ <title>Mundo!</title>
  <style>
   body {
 	background-image:url(resources/load.jpg);
@@ -21,6 +21,39 @@
     background-repeat: no-repeat;
 	position: relative;
 	}
+  .all {
+	position: fixed;
+	top:calc(50% - 60px);
+  }
+  .a {
+	left:calc(50% - 260px);
+  }
+  .b {
+	left:calc(50% - 60px);
+  }
+  .c {
+	left:calc(50% + 140px);
+  }
+  .one{
+	z-index:5;
+	content:url("resources/slot1.png");
+  }
+  .two {
+	z-index:4;
+	content:url("resources/slot2.png");
+  }
+  .three {
+	z-index:3;
+	content:url("resources/slot3.png");
+  }
+  .four {
+	z-index:2;
+	content:url("resources/slot4.png");
+  }
+  .five {
+	z-index:1;
+	content:url("resources/slot5.png");
+  }
   @keyframes bgChange  {
     0% {background-image: url("resources/background.jpg");}
 	24.99% {background-image: url("resources/background.jpg");}
@@ -84,21 +117,6 @@
   66.66% {top:0;right:calc(100% - 239px)}
   100% {top:0;right:0}
   }
-  @keyframes tocit {
-	0% {left:0;top:0}
-	25% {left:calc(100% - 304px);top:0}
-	50% {left:calc(100% - 304px);top:calc(100% - 134px)}
-	75% {left:0;top:calc(100% - 134px)}
-	100% {left:0;top:0}
-  }
-  #kalendar {
-	animation: tocit 30s linear infinite;
-	position:absolute;
-	left:calc(50% - 152px);
-	top:calc(50% - 67px);
-	background-color:blue;
-	color:red;
-  }
  </style>
  <script>
   function right(left, right, title) {
@@ -153,72 +171,6 @@
 </head>
 <body>
  <div>
- <div id="zero" style="display:block;position:relative">
- <div class="normalBg" style="background-image: url(resources/background7.jpg)">
- <table id="kalendar">
-  <tr align="center">
-	<th width="60">Týden</th>
-	<th width="30">Pon</th>
-	<th width="30">Út</th>
-	<th width="30">St</th>
-	<th width="30">Čt</th>
-	<th width="30">Pá</th>
-	<th width="30">So</th>
-	<th width="30">Ne</th>
-  </tr>
-  <tr align="center">
-	<th>44.</th>
-	<td><i>31</i></td>
-	<td>1</td>
-	<td>2</td>
-	<td>3</td>
-	<td>4</td>
-	<td>5</td>
-	<td>7</td>
-  </tr>
-  <tr align="center">
-	<th>45.</th>
-	<td>8</td>
-	<td>9</td>
-	<td>10</td>
-	<td>11</td>
-	<td>12</td>
-	<td>13</td>
-	<td>14</td>
-  </tr>
-  <tr align="center">
-	<th>46.</th>
-	<td>15</td>
-	<td>16</td>
-	<td>17</td>
-	<td>18</td>
-	<td>19</td>
-	<td>20</td>
-	<td>21</td>
-  </tr>
-  <tr align="center">
-	<th>47.</th>
-	<td>22</td>
-	<td>23</td>
-	<td>24</td>
-	<td>25</td>
-	<td>26</td>
-	<td>27</td>
-	<td>28</td>
-  </tr>
-  <tr align="center">
-	<th>48.</th>
-	<td>29</td>
-	<td>30</td>
-	<td><i>1</i></td>
-	<td><i>2</i></td>
-	<td><i>3</i></td>
-	<td><i>4</i></td>
-	<td><i>5</i></td>
-  </tr>
- </table>
- <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('zero','first','Mundo!')"></img>
- </div></div>
  <div id="first" style="display:none;position:relative;">
  <div id="firstBg" style="position:relative">
   <p style="text-align:center"><img src="resources/title.png" style="width:cover;animation: spin 6s linear infinite;"></p><br><br>
@@ -232,7 +184,6 @@
  </table>
  <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/fmI_Ndrxy14?controls=0"></iframe>
  <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('first','second','Donald!')"></img>
- <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('zero','first','Zbytečný kalendář')"></img>
  </div></div>
  <div id="second" style="display:none;position:relative">
   <div class="normalBg" style="background-image: url(resources/background5.jpg)">
@@ -241,8 +192,11 @@
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('first','second','Mundo!')"></img>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('second','third','WIP!')"></img>
   </div></div>
-  <div id="third" style="display:none;position:relative">
+  <div id="third" style="display:block;position:relative">
   <div class="normalBg" style="background-image: url(resources/background6.jpg)">
+	<img class="a all one"></img><img class="a all two"></img><img class="a all three"></img><img class="a all four"></img><img class="a all five"></img>
+	<img class="b all one"></img><img class="b all two"></img><img class="b all three"></img><img class="b all four"></img><img class="b all five"></img>
+	<img class="c all one"></img><img class="c all two"></img><img class="c all three"></img><img class="c all four"></img><img class="c all five"></img>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('second','third','Donald!')"></img>
   </div></div>
  </div>
