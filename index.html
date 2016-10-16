@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta charset="utf-8">
- <title>Mundo!</title>
+ <title>Crooked Hillary!</title>
  <style>
   body {
 	background-image:url(resources/load.jpg);
@@ -21,39 +21,6 @@
     background-repeat: no-repeat;
 	position: relative;
 	}
-  .all {
-	position: fixed;
-	top:calc(50% - 60px);
-  }
-  .a {
-	left:calc(50% - 260px);
-  }
-  .b {
-	left:calc(50% - 60px);
-  }
-  .c {
-	left:calc(50% + 140px);
-  }
-  .one{
-	z-index:5;
-	content:url("resources/slot1.png");
-  }
-  .two {
-	z-index:4;
-	content:url("resources/slot2.png");
-  }
-  .three {
-	z-index:3;
-	content:url("resources/slot3.png");
-  }
-  .four {
-	z-index:2;
-	content:url("resources/slot4.png");
-  }
-  .five {
-	z-index:1;
-	content:url("resources/slot5.png");
-  }
   @keyframes bgChange  {
     0% {background-image: url("resources/background.jpg");}
 	24.99% {background-image: url("resources/background.jpg");}
@@ -103,19 +70,19 @@
     width: 256px;
   }
   @keyframes fadeToLeft {
-  0% {left: 0%}
-  100% {left: -100%}
+	0% {left: 0%}
+	100% {left: -100%}
   }
   @keyframes fadeToRight {
-  0% {right: 0%}
-  100% {right: -100%}
+	0% {right: 0%}
+	100% {right: -100%}
   }
   @keyframes MAGA {
-  0% {top:0;right:0}
-  16.66% {top:calc(100% - 320px);right:0}
-  50% {top:calc(100% - 320px);right:calc(100% - 239px)}
-  66.66% {top:0;right:calc(100% - 239px)}
-  100% {top:0;right:0}
+	0% {top:0;right:0}
+	16.66% {top:calc(100% - 320px);right:0}
+	50% {top:calc(100% - 320px);right:calc(100% - 239px)}
+	66.66% {top:0;right:calc(100% - 239px)}
+	100% {top:0;right:0}
   }
  </style>
  <script>
@@ -162,11 +129,10 @@
 		document.getElementById('donaldHead').addEventListener("click", sax);
 		}		
     }
-  function stamina() {
-	var stamina = new Audio("resources/stamina.wav");
-	stamina.play();
+  function play(src) {
+	var audio = new Audio(src);
+	audio.play();
   }
-  
  </script>
 </head>
 <body>
@@ -187,16 +153,18 @@
  </div></div>
  <div id="second" style="display:none;position:relative">
   <div class="normalBg" style="background-image: url(resources/background5.jpg)">
-   <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="stamina()">
+   <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="play('resources/stamina.wav')">
    <img id="donaldHead" src="resources/donaldHead.png" style="display:block;top:calc(50% - 155px);left:calc(50% - 135px);z-index;position:absolute;width:270px;height:310px" onclick="sax()"></img>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('first','second','Mundo!')"></img>
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('second','third','WIP!')"></img>
+   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('second','third','Crooked Hillary!')"></img>
   </div></div>
   <div id="third" style="display:block;position:relative">
-  <div class="normalBg" style="background-image: url(resources/background6.jpg)">
-	<img class="a all one"></img><img class="a all two"></img><img class="a all three"></img><img class="a all four"></img><img class="a all five"></img>
-	<img class="b all one"></img><img class="b all two"></img><img class="b all three"></img><img class="b all four"></img><img class="b all five"></img>
-	<img class="c all one"></img><img class="c all two"></img><img class="c all three"></img><img class="c all four"></img><img class="c all five"></img>
+  <div class="normalBg" style="background-color:#ff4d4d">
+	<img src="resources/evilWitch.jpg" align="right" style="display:block;height:100%"></img>
+	<table style="position:absolute;top:100px">
+		<caption style="width:300px"><font size="20"><b>Lies of Hillary</b></caption><br>
+		<tr><td align="right">Gay marriage<td><button onclick="play('resources/1a.wav')">2002</button> <button onclick="play('resources/1b.wav')">2004</button> <button onclick="play('resources/1c.wav')">2010</button> <button style="" onclick="play('resources/1d.wav')"><font color="red">2013</font></button></tr>
+	</table>
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('second','third','Donald!')"></img>
   </div></div>
  </div>
