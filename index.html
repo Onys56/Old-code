@@ -21,6 +21,9 @@
     background-repeat: no-repeat;
 	position: relative;
 	}
+  td {
+	text-align:center;
+  }
   @keyframes bgChange  {
     0% {background-image: url("resources/background.jpg");}
 	24.99% {background-image: url("resources/background.jpg");}
@@ -134,24 +137,26 @@
 	audio.play();
   }
   function count() {
-	var number = prompt("Please enter positive number", "0");
-	document.getElementById("write").innerHTML = "";
+	var number = prompt("Zadej přirozené čílso:", "0");
+	document.getElementById("write").innerHTML = "<tr><th>Počet kroků</th><th>Číslo <i>n</i></th></tr>";
 	if (number == null || number <= 0 || isNaN(number) == true) {
 	document.getElementById("write").innerHTML =  "Error!";
 	return;
 	} else {
+	var y = 0;
 	setTimeout(count2(number),100);
 		function count2(x) {
 			var myInnerHtml = document.getElementById("write").innerHTML;
-			document.getElementById("write").innerHTML = myInnerHtml + x + "<br>";
+			document.getElementById("write").innerHTML = myInnerHtml + "<tr><td>" + y + "</td><td>" + x + "</td></tr>";
 			if (x == 1){
-				document.getElementById("write").innerHTML = myInnerHtml + 1 + "<br>End of sequence!";
+				document.getElementById("write").innerHTML = myInnerHtml + "<tr><td>" + y + '</td><td>1</td></tr><tr><td colspan="2">...</td></tr><tr>';
 				return;
 			} else if (x%2 == 0) {
 				x = x/2;
 			} else {
 				x = 3*x+1;
 			}
+			y++;
 			setTimeout(count2,100,x);
 		}	
 	}
@@ -192,14 +197,14 @@
    <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('third','fourth','Collatz conjecture!')">
   </div></div>
   <div id="fourth" style="display:block;position:relative">
-   <div class="normalBg" style="background-color:#34ad7e;overflow:auto" align="center">
+   <div class="normalBg" id="collatzDiv" style="background-color:#34ad7e;overflow:auto" align="center">
 	<b>Collatz conjecture</b><br>
-	Pokud je číslo sudé bude vyděleno dvěmi: <b>x = x/2</b><br>
-	Pukud je číslo liché bude vynásobeno 3 a bude přičtena jednička: <b>x = 3x + 1</b><br>
+	Pokud je číslo sudé bude vyděleno dvěmi: <b>n = n/2</b><br>
+	Pukud je číslo liché bude vynásobeno 3 a bude přičtena jednička: <b>n = 3n + 1</b><br>
 	Všechna čísla končí opakujícím se cyklem <b>4, 2, 1...</b><br>
-	<button onclick="count()" style="position:absolute;left:calc(50% - 22px)">Start</button><br>
+	<button id="collatz" onclick="count()" style="position:absolute;left:calc(50% - 22px)">Start</button><br>
 	<img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('third','fourth','Crooked Hillary!')">
-	<p id="write"></p>
+	<table id="write" border="1"></table>
   </div></div>
  </div>
 </body>
