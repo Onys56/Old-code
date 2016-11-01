@@ -140,16 +140,18 @@
 	var number = prompt("Zadej přirozené čílso:", "0");
 	document.getElementById("write").innerHTML = "<tr><th>Počet kroků</th><th>Číslo <i>n</i></th></tr>";
 	if (number == null || number <= 0 || isNaN(number) == true) {
-	document.getElementById("write").innerHTML =  "Error!";
+	document.getElementById("write").innerHTML =  "Chyba!";
 	return;
 	} else {
 	var y = 0;
-	setTimeout(count2(number),100);
+	setTimeout(count2(number),1);
 		function count2(x) {
 			var myInnerHtml = document.getElementById("write").innerHTML;
 			document.getElementById("write").innerHTML = myInnerHtml + "<tr><td>" + y + "</td><td>" + x + "</td></tr>";
+			autoScroll("collatzDiv");
 			if (x == 1){
 				document.getElementById("write").innerHTML = myInnerHtml + "<tr><td>" + y + '</td><td>1</td></tr><tr><td colspan="2">...</td></tr><tr>';
+				autoScroll("collatzDiv");
 				return;
 			} else if (x%2 == 0) {
 				x = x/2;
@@ -157,9 +159,12 @@
 				x = 3*x+1;
 			}
 			y++;
-			setTimeout(count2,100,x);
+			setTimeout(count2,1,x);
 		}	
 	}
+  }
+  function autoScroll(elementID) {
+	document.getElementById(elementID).scrollTop = document.getElementById(elementID).scrollHeight;
   }
  </script>
 </head>
@@ -177,14 +182,14 @@
   </tr></thead>
  </table>
  <iframe id="video" style="border:0;position:absolute;animation: move 10s linear infinite;bottom:0" width="420" height="235" src="https://www.youtube.com/embed/fmI_Ndrxy14?controls=0"></iframe>
- <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('first','second','Donald!')">
+ <img src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('first','second','Donald!')">
  </div></div>
  <div id="second" style="display:none;position:relative">
   <div class="normalBg" style="background-image: url(resources/background5.jpg)">
    <img src="resources/MAGA.jpg" style="width:239px;height:320px;position:absolute;animation: MAGA 18s linear infinite" onclick="play('resources/stamina.wav')">
    <img id="donaldHead" src="resources/donaldHead.png" style="display:block;top:calc(50% - 155px);left:calc(50% - 135px);z-index;position:absolute;width:270px;height:310px" onclick="sax()">
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('first','second','Mundo!')">
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('second','third','Crooked Hillary!')">
+   <img src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('first','second','Mundo!')">
+   <img src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('second','third','Crooked Hillary!')">
   </div></div>
   <div id="third" style="display:none;position:relative">
   <div class="normalBg" style="background-color:#ff4d4d">
@@ -193,8 +198,8 @@
 		<caption style="width:300px"><font size="20"><b>Lies of Hillary</b></caption><br>
 		<tr><td align="right">Gay marriage<td><button onclick="play('resources/1a.wav')">2002</button> <button onclick="play('resources/1b.wav')">2004</button> <button onclick="play('resources/1c.wav')">2010</button> <button style="" onclick="play('resources/1d.wav')"><font color="red">2013</font></button></tr>
 	</table>
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('second','third','Donald!')">
-   <img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('third','fourth','Collatz conjecture!')">
+   <img src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('second','third','Donald!')">
+   <img src="resources/rightArrow.png" style="position:absolute;top:0;right:0" onclick="right('third','fourth','Collatz conjecture!')">
   </div></div>
   <div id="fourth" style="display:block;position:relative">
    <div class="normalBg" id="collatzDiv" style="background-color:#34ad7e;overflow:auto" align="center">
@@ -203,8 +208,13 @@
 	Pukud je číslo liché bude vynásobeno 3 a bude přičtena jednička: <b>n = 3n + 1</b><br>
 	Všechna čísla končí opakujícím se cyklem <b>4, 2, 1...</b><br>
 	<button id="collatz" onclick="count()" style="position:absolute;left:calc(50% - 22px)">Start</button><br>
-	<img id="rightArrow" src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('third','fourth','Crooked Hillary!')">
-	<table id="write" border="1"></table>
+	<img src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('third','fourth','Crooked Hillary!')">
+	<img src="resources/rightArrow.png" style="display:none;position:absolute;top:0;right:0" onclick="right('fourth','fifth','Collatz graph!')">
+	<table id="write" border="1" style="margin-top:20px"></table>
+  </div></div>
+  <div id="fifth" style="display:none;position:relative">
+   <div class="normalBg" style="background-color:#34ad7e;overflow:auto" align="center">
+	<img src="resources/rightArrow.png" style="position:absolute;top:0;left:0;transform:scale(-1,1)" onclick="left('fourth','fifth','Collatz conjecture!')">
   </div></div>
  </div>
 </body>
