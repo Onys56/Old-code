@@ -1,0 +1,72 @@
+<html>
+<head>
+<meta charset="utf-8">
+	<title>Kolona automobilů</title>
+	<style>
+		.a {text-align:center;font-size:50px}
+		tr {height:30px}
+		td {}
+	</style>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script>
+	google.charts.load('current', {packages: ['corechart', 'line']});
+	google.charts.setOnLoadCallback(drawLogScales);
+
+	function drawLogScales() {
+	var data = new google.visualization.DataTable();
+      data.addColumn('number', 'X');
+      data.addColumn('number', '1. automobil');
+      data.addColumn('number', '2. automobil');
+	  data.addColumn('number', '3. automobil');
+
+      data.addRows([
+		[0,  0,      null,	null],
+        [1,  2,      null, 	null],
+        [2,  4,      null, 	null],
+        [3,  6,      null, 	null],
+		[4,  8,      null,	null],
+		[5,  10,     0,		null],
+		[6,  12,     2,		null],
+		[7,  14,     4,		null],
+		[8,  16,     6,		null],
+		[9,  16,     8,		null],
+		[10, 16,     10,	0],
+		[11, 16,     12,    2],
+		[12, 16,     14,    4],
+		[13, 16,     16,    6],
+		[14, 16,     16,    8],
+		[15, 16,     16,    10],
+      ]);
+
+      var options = {
+        hAxis: {
+          title: 'Čas',
+          gridlines: {count: 16}
+        },
+        vAxis: {
+          title: 'Rychlost',
+		  gridlines: {count: 9}
+        },
+        colors: ['red', 'green', 'blue'],
+		backgroundColor: "#2f9d73"
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+	</script>
+</head>
+<body style="background-color:#34ad7e">
+	<p class="a">1. Kolona automobilů</p>
+	<table align="center">
+		<tr><td width="300">Počet automobilů</td><td><i>N = 20</i></td></tr>
+		<tr><td>Vzdálenost mezi čely automobilů</td><td><i>l<sub>0</sub> = 10m</i></td></tr>
+		<tr><td>Délka každého automobilu</td><td><i>l<sub>1</sub> = 5m</i></td></tr>
+		<tr><td>Zrychlení automobilů</td><td><i>a<sub>0</sub> = 2ms<sup>-2</sup></i></td></tr>
+		<tr><td>Maximální rychlost</td><td><i>v<sub>0</sub> = 57,6kmh<sup>-1</sup> = 16ms<sup>-1</sup></i></td></tr>
+	</table>
+	<p class="a">A</p>
+	<div id="chart_div" style="width: 720px; height: 400px"></div>
+</body>
+</html>
+
