@@ -8,12 +8,13 @@
 		.graf {
 			display:block;
 			margin:0 auto;
-			width:720px;
-			height:400px;
+			width:40vw;
+			height:22.22vw;
         }
 		#container {width:100%;clear:both}
 		#left {float:left;width:50%}
 		#right {float:right;width:50%}
+		#curve_chart {margin-top: 170px}
 	</style>
 	<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({
@@ -56,6 +57,7 @@
       ]);
 
       var options = {
+		title: 'Závislost rychlosti na čase',
         hAxis: {
           title: 'Čas (s)',
           gridlines: {count: 16}
@@ -65,14 +67,63 @@
 		  gridlines: {count: 9}
         },
         colors: ['red', 'green', 'blue'],
-		backgroundColor: "#2f9d73",
-		tooltip: { isHtml: true }
+		backgroundColor: "#2f9d73"
       };
 
       var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
       chart.draw(data, options);
     }
 	</script>
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        	var data = new google.visualization.DataTable();
+			  data.addColumn('number', 'X');
+			  data.addColumn('number', '1. automobil');
+			  data.addColumn('number', '2. automobil');
+			  data.addColumn('number', '3. automobil');
+
+			  data.addRows([
+				[0,  0,      -10,	-20],
+				[1,  1,      -10, 	-20],
+				[2,  4,      -10, 	-20],
+				[3,  9,      -10, 	-20],
+				[4,  16,     -10,	-20],
+				[5,  25,     -10,	-20],
+				[6,  36,     -9,	-20],
+				[7,  49,     -6,	-20],
+				[8,  64,     -1,	-20],
+				[9,  80,      6,	-20],
+				[10, 96,     15,	-20],
+				[11, 112,     26,   -19],
+				[12, 128,     39,   -16],
+				[13, 144,     54,   -11],
+				[14, 160,     71,    -4],
+				[15, 176,     90,     5],
+			]);
+
+        var options = {
+          	title: 'Závislost polohy na čase',
+			hAxis: {
+			  title: 'Čas (s)',
+               gridlines: {count: 16}
+			},
+			vAxis: {
+              title: 'Poloha (m)',
+		      gridlines: {count: 10}
+			},
+			colors: ['red', 'green', 'blue'],
+			backgroundColor: "#2f9d73",
+			curveType: 'function'
+			};
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body style="background-color:#34ad7e">
 	<p class="a">1. Kolona automobilů</p>
@@ -89,9 +140,8 @@
 	<div id="container">
 	<div id="left">
 	<table align="center">
-		<tr><td width="400">Perioda výjezdu automobilů</td><td><i>$T=\sqrt\frac{2(l_1-l_0)}{a_0}$</i></td></tr>
-		<tr><td>Čas od výjezdu automobilu n</td><td><i>$t_n=(n-1)T$</i></td></tr>
-		<tr><td>Rychlost automobilu n pokud <i>$v_0≥v_n$</i></td><td><i>$v_n=a_0t_n$</i></td></tr>
+		<tr><td width="320">Perioda výjezdu automobilů</td><td><i>$T=\sqrt\frac{2(l_1-l_0)}{a_0}$</i></td></tr>
+		<tr><td>Rychlost automobilu n pokud <i>$v_0≥v_n$</i></td><td><i>$v_n=a_0(n-1)T$</i></td></tr>
 		<tr><td>Rychlost automobilu n pokud <i>$v_0≤v_n$</i></td><td><i>$v_n=v_0$</i></td></tr>
 	</table>
 	<p align="center">
@@ -105,6 +155,15 @@
 	<div id="chart_div" class="graf"></div>
 	</div>
 	<div id="right">
+	<table align="center">
+		<tr><td width="320">Čas pro dosáhnutí maximální rychosti</td><td><i>$\frac{v_0}{a_0}+(n-1)T$</i></td></tr>
+		<tr><td>Ujetá vzdálenost se zrychlením</td><td><i>$\frac{1}{2}a_0t^2$</i></td></tr>
+		<tr><td>Ujetá vzdálenost bez zrychlení</td><td><i>$v_0(t-\frac{v_0}{a_0})$</i></td></tr>
+		<tr><td>Počáteční poloha automobilu <i>n</i></td><td><i>$-(n-1)l_0$</i></td></tr>
+		<tr><td>Poloha do času $\;t≤\frac{v_0}{a_0}+(n-1)T$</td><td><i>$x=\frac{1}{2}a_0t^2-(n-1)l_0$</i></td></tr>
+		<tr><td>Poloha po čase $\;t≥\frac{v_0}{a_0}+(n-1)T$</td><td><i>$x=\frac{1}{2}a_0(\frac{v_0}{a_0})^2-(n-1)l_0+v_0(t-\frac{v_0}{a_0})$</i></td></tr>
+	</table>
+	<div id="curve_chart" class="graf"></div>
 	</div>
 	</div>
 </body>
