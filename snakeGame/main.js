@@ -1,9 +1,11 @@
-var scl = 16;
+var scl = 25;
 var s;
 var f;
+var w = window.innerWidth;
+var h = window.innerHeight;
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(w, h);
     s = new Snake();
     f = new Food();
     frameRate(16);
@@ -11,17 +13,11 @@ function setup() {
 
 function draw() {
     background(51);
-    eat();
+    s.eat();
     s.move();
     f.show();
     s.show();
-}
-
-function eat(){
-    if (s.x == f.x && s.y == f.y) {
-      f = new Food();
-      console.log("eaten")
-    }
+    console.log(w + " a " + h)
 }
 
 function keyPressed() {
