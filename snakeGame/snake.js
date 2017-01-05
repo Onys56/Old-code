@@ -7,20 +7,12 @@ function Snake() {
     this.dir = function(x, y) {
         this.xmove = x;
         this.ymove = y;
+		    canMove = false;
     }
     this.move = function() {
-            if (this.x[0] == floor(width / scl)) {
-                this.x[0] = 0;
-            } else if (this.x[0] == -1) {
-                this.x[0] = floor(width / scl) - 1
-            } else if (this.y[0] == floor(height / scl)) {
-                this.y[0] = 0
-            } else if (this.y[0] == -1) {
-                this.y[0] = floor(height / scl) - 1
-            } else {
-                this.x[0] = this.x[0] + this.xmove;
-                this.y[0] = this.y[0] + this.ymove;
-            }
+        this.x[0] = this.x[0] + this.xmove;
+        this.y[0] = this.y[0] + this.ymove;
+
     }
     this.eat = function() {
       if (this.x[0] == f.x && this.y[0] == f.y) {
@@ -45,5 +37,14 @@ function Snake() {
           rect(this.x[i] * scl, this.y[i] * scl, scl, scl);
         }
     }
-
+    this.death = function() {
+      if (this.x[0] < 0 || this.y[0] < 0 || this.x[0] > floor(width/scl) || this.y[0] > floor(height/scl)) {
+        console.log("RIP OFFSCREEN")
+      }
+      for (i=1; this.x.length > i; i++) {
+        if (this.x[0] == this.x[i] && this.y[0] == this.y[i]) {
+          console.log("RIP BOURAČKA");
+        }
+      }
+    }
 }
