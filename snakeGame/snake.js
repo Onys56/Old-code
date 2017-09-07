@@ -39,11 +39,13 @@ function Snake() {
     }
     this.death = function() {
       if (this.x[0] < 0 || this.y[0] < 0 || this.x[0] > floor(width/scl) || this.y[0] > floor(height/scl)) {
-        console.log("RIP OFFSCREEN")
+        console.log("RIP OFFSCREEN");
+        death = true;
       }
       for (i=1; this.x.length > i; i++) {
         if (this.x[0] == this.x[i] && this.y[0] == this.y[i]) {
           console.log("RIP BOURAČKA");
+          death = true;
         }
       }
     }
