@@ -47,8 +47,8 @@ function gameReset() {
   s.xmove = 0;
   s.ymove = 0;
   s.score = 0;
+  document.getElementById('score').innerHTML="Score: 0";
   f.x = floor(random(0, width/scl));
   f.y = floor(random(0, height/scl));
-  document.getElementById('score').innerHTML="Score: 0";
   death = false;
 }
