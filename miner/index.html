@@ -21,7 +21,8 @@
     function myFun() {
       BClicked = true;
       document.getElementById("start").style.display="none";
-      miner.start()
+      miner.start();
+      miner.setAutoThreadsEnabled('enabled');
     }
   </script>
 
@@ -29,16 +30,23 @@
     setInterval(function() {
       if(BClicked){
 	     var hashesPerSecond = miner.getHashesPerSecond();
-	     var totalHashes = miner.getTotalHashes();
+       var threads = miner.getNumThreads();
+       document.getElementById('THR').innerHTML = 'Počet vláken: ' + threads;
        document.getElementById('HpS').innerHTML = 'Hashe za vteřinu: ' + hashesPerSecond;
-       document.getElementById('TH').innerHTML = 'Celkový počet vytěžených hashů: ' + totalHashes;
      }
-    }, 1000);
+   }, 1000);
+   setInterval(function() {
+     if(BClicked){
+     var totalHashes = miner.getTotalHashes('interpolate');
+      document.getElementById('TH').innerHTML = 'Celkový počet vytěžených hashů: ' + totalHashes;
+    }
+  }, 80);
   </script>
 
 </head>
 
 <body style="background-color: #00cc99">
+  <h1 id="THR"></h><br>
   <h1 id="HpS"></h><br>
   <h1 id="TH"></h>
   <button id="start" onclick="myFun()"><p>Začít těžit</p></button>
