@@ -1,0 +1,316 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title id="title">Šance v účtenkovce</title>
+    <style>
+        span {
+            font-size: 1vw;
+            margin: 1vh;
+            text-align: center;
+            display: block
+        }
+
+        input,
+        textarea {
+            margin-left: 1vw;
+            margin-right: 1vw;
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            background-color: #A7A1AE;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            width: 7vw;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 300;
+            line-height: 1.42em;
+            color: #A7A1AE;
+            background-color: #1F2739;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 300;
+            line-height: 1em;
+            text-align: center;
+            color: #;
+            padding-top: 1.5vh;
+        }
+
+        h2 {
+            font-size: 1em;
+            font-weight: 300;
+            text-align: center;
+            display: block;
+            line-height: 1em;
+            padding-bottom: 2em;
+            color: #FB667A;
+        }
+
+        .cont {
+            width: 9vw;
+            margin: 0 auto;
+        }
+
+        .blue {
+            color: #185875;
+        }
+
+        .yellow {
+            color: #FFF842;
+        }
+
+        .container th h1 {
+            font-weight: bold;
+            font-size: 1em;
+            text-align: left;
+            color: #185875;
+        }
+
+        .container td {
+            font-weight: normal;
+            font-size: 1em;
+            -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+            -moz-box-shadow: 0 2px 2px -2px #0E1119;
+            box-shadow: 0 2px 2px -2px #0E1119;
+        }
+
+        .container {
+            text-align: left;
+            overflow: hidden;
+            width: 80%;
+            margin: 0 auto;
+            display: table;
+            padding: 0 0 8em 0;
+        }
+
+        .container td,
+        .container th {
+            padding-bottom: 2%;
+            padding-top: 2%;
+            padding-left: 2%;
+        }
+        /* Background-color of the odd rows */
+
+        .container tr:nth-child(odd) {
+            background-color: #323C50;
+        }
+        /* Background-color of the even rows */
+
+        .container tr:nth-child(even) {
+            background-color: #2C3446;
+        }
+
+        .container th {
+            background-color: #1F2739;
+        }
+
+        .container td:first-child {
+            color: #FB667A;
+        }
+
+        .container tr:hover {
+            background-color: #464A52;
+            -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+            -moz-box-shadow: 0 6px 6px -6px #0E1119;
+            box-shadow: 0 6px 6px -6px #0E1119;
+        }
+
+        .container td:hover {
+            background-color: #FFF842;
+            color: #403E10;
+            font-weight: bold;
+            box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+            transform: translate3d(6px, -6px, 0);
+            transition-delay: 0s;
+            transition-duration: 0.4s;
+            transition-property: all;
+            transition-timing-function: line;
+        }
+
+        @media (max-width: 800px) {
+            .container td:nth-child(4),
+            .container th:nth-child(4) {
+                display: none;
+            }
+        }
+    </style>
+    <script>
+        var n, m, Lchance, total;
+        var v = [0, 1, 2, 3, 4, 5, 25, 1025];
+        var c = [1, 1, 1, 1, 1, 20, 1000, 20000];
+        var chances = [];
+
+        function start() {
+            n = parseInt(document.getElementById('inN').value);
+            m = parseInt(document.getElementById('inM').value);
+            total = 0;
+            chances.length = 0;
+            if (n > 0 && m > 0 && m <= n) {
+                document.getElementById("title").innerHTML = "Šance v Účtenkovce: " + roundNumber(calculate(21025, 0),4) * 100 + "%";
+                document.getElementById("-1a").innerHTML = calculate(21025, 0) * 100 + "%";
+                document.getElementById("-1c").innerHTML = slova(calculate(21025, 0));
+                for (j = 0; j < 8; j++) {
+                    t = calculate(c[j], v[j]);
+                    chances[j] = t;
+                    console.log(j + ": " + t)
+                    document.getElementById(j + "a").innerHTML = t* 100 + "%";
+                    document.getElementById(j + "c").innerHTML = slova(t);
+                }
+            }
+        }
+
+        function calculate(c, v) { //c-počet cen v-účtenky již vylosované
+            Lchance = 1;
+            for (i = 0; i != c; i++) {
+                Lchance *= (1 - m / (n - i - v))
+            }
+            return 1 - Lchance;
+        }
+
+        //Píšu to jak retard, ale funguje to a časem to možná i vylepším
+        function slova(chance) {
+          if(chance > 1) {
+            return "Nastal problém, kontaktuj správceho."
+          } else if (chance == 1) {
+            return "Je to jistotka"
+          } else if (chance >0.95) {
+            return "Skoro jistotka"
+          } else if (chance > 0.85) {
+            return "Velmi pravděpodobné"
+          } else if (chance >0.70) {
+            return "Pravděpodobné"
+          } else if (chance > 0.55) {
+            return "Spíše Ano"
+          } else if (chance > 0.45) {
+            return "Takzvaný coinflip"
+          } else if (chance > 0.30) {
+            return "Spíše ne"
+          } else if (chance > 0.15) {
+            return "Nepravděpodobné"
+          } else if (chance > 0.01) {
+            return "Velmi nepravděpodobné"
+          } else if (chance > 0) {
+            return "Téměř nemožné"
+          } else if (chance == 0) {
+            return "Nemožné"
+          } else {
+            return "Nastal problém, kontaktuj správceho."
+          }
+        }
+
+        function roundNumber(num, scale) {
+            if (!("" + num).includes("e")) {
+                return +(Math.round(num + "e+" + scale) + "e-" + scale);
+            } else {
+                var arr = ("" + num).split("e");
+                var sig = ""
+                if (+arr[1] + scale > 0) {
+                    sig = "+";
+                }
+                return +(Math.round(+arr[0] + "e" + sig + (+arr[1] + scale)) + "e-" + scale);
+            }
+        }
+    </script>
+</head>
+
+<body style="background-color: #1F2739">
+    <span>Celkový počet zaregistrovaných účtenek: </span>
+    <div class="cont"><input id="inN" autofocus type="number" autocomplete="off" min="0" onchange="start()"></input>
+    </div> <br>
+    <span>Počet vlastních zaregistrovaných účtenek: </span>
+    <div class="cont"><input id="inM" type="number" autocomplete="off" min="0" onchange="start()"></input>
+    </div> <br>
+    <h1>Zatím je matematicky přesně pouze "Cokoliv" a "1.000.000Kč" :( <br>Ostatní jsou jen přibližné hodnoty a "Nic" není vůbec</h1>
+    <table class="container">
+        <thead>
+            <tr>
+                <th>
+                    <h1>Výhra</h1></th>
+                <th>
+                    <h1>Šance v procentech</h1></th>
+                <th>
+                    <h1>Místo pro frajeřinku</h1></th>
+                <th>
+                    <h1>Šance slovy</h1></th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+              <td>Cokoliv</td>
+              <td id="-1a">0</td>
+              <td id="-1b"></td>
+              <td id="-1c">Nemožné</td>
+          </tr>
+            <tr>
+                <td>1.000.000Kč</td>
+                <td id="0a">0</td>
+                <td id="0b"></td>
+                <td id="0c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>Osobní automobil</td>
+                <td id="1a">0</td>
+                <td id="1b"></td>
+                <td id="1c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>300.000Kč</td>
+                <td id="2a">0</td>
+                <td id="2b"></td>
+                <td id="2c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>200.000Kč</td>
+                <td id="3a">0</td>
+                <td id="3b"></td>
+                <td id="3c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>100.000Kč</td>
+                <td id="4a">0</td>
+                <td id="4b"></td>
+                <td id="4c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>20.000Kč</td>
+                <td id="5a">0</td>
+                <td id="5b"></td>
+                <td id="5c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>1.000Kč</td>
+                <td id="6a">0</td>
+                <td id="6b"></td>
+                <td id="6c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>100Kč</td>
+                <td id="7a">0</td>
+                <td id="7b"></td>
+                <td id="7c">Nemožné</td>
+            </tr>
+            <tr>
+                <td>Nic</td>
+                <td id="8a">0</td>
+                <td id="8b"></td>
+                <td id="8c">Nemožné</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
