@@ -161,13 +161,13 @@
             chances.length = 0;
             if (n > 0 && m > 0 && m <= n) {
                 document.getElementById("title").innerHTML = "Šance v Účtenkovce: " + roundNumber(calculate(21025, 0),4) * 100 + "%";
-                document.getElementById("-1a").innerHTML = calculate(21025, 0) * 100 + "%";
+                document.getElementById("-1a").innerHTML = roundNumber(calculate(21025, 0),6) * 100 + "%";
                 document.getElementById("-1c").innerHTML = slova(calculate(21025, 0));
                 for (j = 0; j < 8; j++) {
                     t = calculate(c[j], v[j]);
                     chances[j] = t;
                     console.log(j + ": " + t)
-                    document.getElementById(j + "a").innerHTML = t* 100 + "%";
+                    document.getElementById(j + "a").innerHTML = roundNumber(t* 100,6) + "%";
                     document.getElementById(j + "c").innerHTML = slova(t);
                 }
             }
