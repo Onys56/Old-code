@@ -163,10 +163,11 @@
                 document.getElementById("title").innerHTML = "Šance v Účtenkovce: " + roundNumber(calculate(21025, 0),4) * 100 + "%";
                 document.getElementById("-1a").innerHTML = roundNumber(calculate(21025, 0),6) * 100 + "%";
                 document.getElementById("-1c").innerHTML = slova(calculate(21025, 0));
+                document.getElementById("8a").innerHTML = roundNumber(1-calculate(21025, 0),6) * 100 + "%";
+                document.getElementById("8c").innerHTML = slova(1-calculate(21025, 0));
                 for (j = 0; j < 8; j++) {
                     t = calculate(c[j], v[j]);
                     chances[j] = t;
-                    console.log(j + ": " + t)
                     document.getElementById(j + "a").innerHTML = roundNumber(t* 100,6) + "%";
                     document.getElementById(j + "c").innerHTML = slova(t);
                 }
@@ -175,7 +176,8 @@
 
         function calculate(c, v) { //c-počet cen v-účtenky již vylosované
             Lchance = 1;
-            for (i = 0; i != c; i++) {
+            s = Math.min(c, n-v);
+            for (i = 0; i < s; i++) {
                 Lchance *= (1 - m / (n - i - v))
             }
             return 1 - Lchance;
@@ -234,7 +236,7 @@
     <span>Počet vlastních zaregistrovaných účtenek: </span>
     <div class="cont"><input id="inM" type="number" autocomplete="off" min="0" onchange="start()"></input>
     </div> <br>
-    <h1>Zatím je matematicky přesně pouze "Cokoliv" a "1.000.000Kč" :( <br>Ostatní jsou jen přibližné hodnoty a "Nic" není vůbec</h1>
+    <h1>Zatím je matematicky přesně pouze "Cokoliv", "1.000.000Kč" a "Nic"  <br>Ostatní jsou jen přibližné hodnoty</h1>
     <table class="container">
         <thead>
             <tr>
