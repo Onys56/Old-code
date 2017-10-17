@@ -174,13 +174,14 @@
             }
         }
 
-        function calculate(c, v) { //c-počet cen v-účtenky již vylosované
-            Lchance = 1;
-            s = Math.min(c, n-v);
-            for (i = 0; i < s; i++) {
-                Lchance *= (1 - m / (n - i - v))
-            }
+        function calculate(cc, vu) { //cc-počet cen; vu-účtenky již vylosované
+          if (n-vu <= 0) {
+            return 0
+          } else {
+            s = Math.min(cc, n-vu)
+            Lchance = (1 - m/n)**s;
             return 1 - Lchance;
+          }
         }
 
         //Píšu to jak retard, ale funguje to a časem to možná i vylepším
@@ -198,7 +199,7 @@
           } else if (chance > 0.55) {
             return "Spíše Ano"
           } else if (chance > 0.45) {
-            return "Takzvaný coinflip"
+            return "Jako hod mincí"
           } else if (chance > 0.30) {
             return "Spíše ne"
           } else if (chance > 0.15) {
@@ -236,7 +237,6 @@
     <span>Počet vlastních zaregistrovaných účtenek: </span>
     <div class="cont"><input id="inM" type="number" autocomplete="off" min="0" onchange="start()"></input>
     </div> <br>
-    <h1>Zatím je matematicky přesně pouze "Cokoliv", "1.000.000Kč" a "Nic"  <br>Ostatní jsou jen přibližné hodnoty</h1>
     <table class="container">
         <thead>
             <tr>
