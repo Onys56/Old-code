@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <script>
+        var min = -10;
+        var max = 10;
+        var values = [];
+        var symbol = [];
+        var primes = [2, 3, 5, 7, 11, 13, 17, 19];
+        var factors = [];
+
+        function DoIt() {
+            for (a = min; a <= max; a++) {
+                if (a == 0) {
+                    continue;
+                } else {
+                    for (b = min; b <= max; b++) {
+                        if (b == 0 ) {
+                            continue;
+                        } else {
+                            for (c = min; c <= max; c++) {
+                                if (c == 0) {
+                                    continue;
+                                } else {
+                                    for (d = min; d <= max; d++) {
+                                        if (d == 0 ) {
+                                            continue;
+                                        } else {
+                                            for (e = min; e <= max; e++) {
+                                                if (e == 0) {
+                                                    continue;
+                                                } else {
+                                                    for (f = min; f <= max; f++) {
+                                                        if (f == 0 ) {
+                                                            continue;
+                                                        } else if ((a * a - b * b + c * c - d * d - e * e + f * f == 0) && (a * b + c * d - e * f == 0)) {
+                                                            testResult([a, b, c, d, e, f]);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            console.log("A je hotovo.");
+        }
+
+        function testResult(arr) {
+            symbol = [arr[1], arr[3], arr[5]];
+            for (i = 0; i < 3; i++) {
+                if (symbol[i] > 1) {
+                    symbol[i] = "+" + symbol[i];
+                } else if (symbol[i] == 0) {
+                    symbol[i] = "";
+                } else if (symbol[i] == -1) {
+                    symbol[i] = "-";
+                } else if (symbol[i] == 1) {
+                    symbol[i] = "+";
+                } else {
+                    continue;
+                }
+            }
+            console.log("(" + arr[0] + symbol[0] + "i)^2 + " + "(" + arr[2] + symbol[1] + "i)^2 = " + "(" + arr[4] + symbol[2] + "i)^2");
+        }
+
+        function findFactors(num) {
+            var res = []
+            for (i = 0; num >= primes[i]; i++) {
+                if (num / primes[i] == Math.floor(num / primes[i])) {
+                    res.push(primes[i])
+                }
+            }
+            return res;
+        }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
