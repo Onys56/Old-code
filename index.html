@@ -130,14 +130,14 @@
 	  function saxFix2() {
 		document.getElementById('donaldHead').style.animation='none';
 		document.getElementById('donaldHead').addEventListener("click", sax);
-		}		
+		}
     }
   function play(src) {
 	var audio = new Audio(src);
 	audio.play();
   }
   function count() {
-	var number = prompt("Zadej přirozené čílso:", "0");
+	var number = prompt("Zadej přirozené číslo:", "0");
 	document.getElementById("write").innerHTML = "<tr><th>Počet kroků</th><th>Číslo <i>n</i></th></tr>";
 	if (number == null || number <= 0 || isNaN(number) == true) {
 	document.getElementById("write").innerHTML =  "Chyba!";
@@ -160,7 +160,7 @@
 			}
 			y++;
 			setTimeout(count2,1,x);
-		}	
+		}
 	}
   }
   function autoScroll(elementID) {
