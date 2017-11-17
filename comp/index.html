@@ -1,106 +1,161 @@
 <html>
 
 <head>
-  <meta charset="UTF-8" />
-  <script>
-    var range = 10;
-    var values = [];
-    var symbol = [];
-    var primes = [2, 3, 5, 7, 11, 13, 17, 19];
-    var factors = [];
+    <meta charset="UTF-8" />
+    <title id="title">Complexní trojce</title>
+    <style>
+        #kappa,
+        #results {
+            font-size: 1vw;
+            margin: 1vh;
+            text-align: center;
+            display: block
+        }
 
-    function DoIt() {
-      for (a = 0; a <= range; a++) {
-        if (false) {
-          continue;
-        } else {
-          for (b = -range; b <= range; b++) {
-            if (b == 0 && a == 0) {
-              continue;
-            } else {
-              for (c = a; c <= range; c++) {
-                if (false) {
-                  continue;
-                } else {
-                  for (d = b; d <= range; d++) {
-                    if (d == 0 && c == 0) {
-                      continue;
-                    } else {
-                      for (e = 0; e <= range; e++) {
-                        if (false) {
-                          continue;
-                        } else {
-                          for (f = -range; f <= range; f++) {
-                            if (f == 0 && e == 0) {
-                              continue;
-                            } else if ((a * a - b * b + c * c - d * d - e * e + f * f == 0) && (a * b + c * d - e * f == 0)) {
-                              finishResult([a, b, c, d, e, f]);
+        input,
+        textarea {
+            margin-left: 3.5vw;
+            margin-right: 1vw;
+            margin-top: 1vh;
+            margin-bottom: 1vh;
+            background-color: #A7A1AE;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+            width: 2vw;
+        }
+
+        body {
+            color: #A7A1AE;
+            background-color: #1F2739;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 300;
+            line-height: 1em;
+            text-align: center;
+            color: #;
+            padding-top: 1.5vh;
+        }
+
+        h2 {
+            font-size: 1em;
+            font-weight: 300;
+            text-align: center;
+            display: block;
+            line-height: 1em;
+            padding-bottom: 2em;
+            color: #FB667A;
+        }
+
+        .cont {
+            width: 9vw;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        var range = 10;
+        var values = [];
+        var symbol = [];
+        var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233,
+            239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499
+        ];
+        var factors = [];
+
+        function DoIt() {
+            for (a = 1; a <= range; a++) {
+                  for (b = 1; b <= range; b++) {
+                            for (c = a; c <= range; c++) {
+                                    for (d = b; d <= range; d++) {
+                                            for (e = 1; e <= range; e++) {
+                                                    for (f = 1; f <= range; f++) {
+                                                        if (f == 0) {
+                                                            continue;
+                                                        } else if ((a * a - b * b + c * c - d * d - e * e + f * f == 0) && (a * b + c * d - e * f == 0)) {
+                                                            solution([a, b, c, d, e, f]);
+                                                        }
+                                                    }
+
+                                            }
+
+                                    }
+
                             }
-                          }
-                        }
-                      }
+
                     }
-                  }
-                }
-              }
+
             }
-          }
+            console.log("A je hotovo.");
         }
-      }
-      console.log("A je hotovo.");
-    }
 
-    function finishResult(arr) {
-      if (vyeliminovat(arr)) {
-        symbol = [arr[1], arr[3], arr[5]];
-        for (i = 0; i < 3; i++) {
-          if (symbol[i] > 1) {
-            symbol[i] = "+" + symbol[i] + "i";
-          } else if (symbol[i] == 0) {
-            symbol[i] = "";
-          } else if (symbol[i] == -1) {
-            symbol[i] = "-i";
-          } else if (symbol[i] == 1) {
-            symbol[i] = "+i";
-          } else {
-            symbol[i] = symbol[i] + "i";
-          }
+        function solution(arr) {
+            if (eliminate(arr)) {
+                symbol = [arr[1], arr[3], arr[5]];
+                for (i = 0; i < 3; i++) {
+                    if (symbol[i] > 1) {
+                        symbol[i] = "+" + symbol[i] + "i";
+                    } else if (symbol[i] == 0) {
+                        symbol[i] = "";
+                    } else {
+                        symbol[i] = "+i";
+                    }
+                }
+                document.getElementById('results').innerHTML += "(" + arr[0] + symbol[0] + ")<sup>2</sup> + (" + arr[2] + symbol[1] + ")<sup>2</sup> = (" + + arr[4] + symbol[2] + ")<sup>2</sup><br>";
+            }
         }
-        for (i = 0; i < 6; i = i + 2) {
-          if (arr[i] == 0) {
-            arr[i] = "";
-          }
-        }
-        console.log("(" + arr[0] + symbol[0] + ")^2 + " + "(" + arr[2] + symbol[1] + ")^2 = " + "(" + arr[4] + symbol[2] + ")^2");
-      }
-    }
 
-    function findFactors(num) {
-      var res = []
-      for (i = 0; num >= primes[i]; i++) {
-        if (num / primes[i] == Math.floor(num / primes[i])) {
-          res.push(primes[i])
-        }
-      }
-      return res;
-    }
 
-    function vyeliminovat(arr) {
-      for (j = 0; j < 6; j++) {
-        factors = findFactors(Math.abs(arr[j]));
-        for (i = 0; i < factors.length; i++) {
-          test = factors[i];
-          if (Math.abs(arr[0]) % test == 0 && Math.abs(arr[1]) % test == 0 && Math.abs(arr[2]) % test == 0 && Math.abs(arr[3]) % test == 0 && Math.abs(arr[4]) % test == 0 && Math.abs(arr[5]) % test == 0) {
-            return false;
-          }
+        function findFactors(num) {
+            var res = []
+            for (i = 0; num >= primes[i]; i++) {
+                if (num / primes[i] == Math.floor(num / primes[i])) {
+                    res.push(primes[i])
+                }
+            }
+            return res;
         }
-      }
-      return true;
-    }
-  </script>
+
+        function eliminate(arr) {
+            factors = findFactors(Math.min(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]));
+            for (i = 0; i < factors.length; i++) {
+                test = factors[i];
+                if (arr[0] % test == 0 && arr[1] % test == 0 && arr[2] % test == 0 && arr[3] % test == 0 && arr[4] % test == 0 && arr[5] % test == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function check() {
+          range = parseInt(document.getElementById('rng').value);
+            if ((range >= 2) && (range <= 500)) {
+                document.getElementById('results').innerHTML = "";
+                DoIt();
+            }
+        }
+
+    </script>
 </head>
 
 <body>
+    <br><div id="kappa">(a+bi)<sup>2</sup> + (c+di)<sup>2</sup> = (e+fi)<sup>2</sup></div>
+    <div id="kappa">Ve výsledcívh bude a, b, c, d, e, f náležet pouze přirozeným číslům</div>
+    <div id="kappa">A to protože ke všem výsledům které obsahují záporné číslo se lze dostat z výsledků s přirozenými čísly za použití těchto dvou vzorců:</div>
+    <div id="kappa">(a+bi)<sup>2</sup> = (-a-bi)<sup>2</sup> a (a+bi)<sup>2</sup> = -(-b+ai)<sup>2</sup></div>
+    <br><div id="kappa">Rozsah čísel:</div>
+    <div class="cont"><input id="rng" autofocus type="number" autocomplete="off" min="2"></input></div>
+    <div id="kappa"><button onclick="check()">Spustit</button></div>
+    <div id="results" text-align="center"></div>
 </body>
 
 </html>
