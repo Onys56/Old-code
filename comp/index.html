@@ -74,25 +74,21 @@
 
         function DoIt() {
             for (a = 1; a <= range; a++) {
-                  for (b = 1; b <= range; b++) {
-                            for (c = 1; c <= range; c++) {
-                                    for (d = b; d <= range; d++) {
-                                            for (e = 1; e <= range; e++) {
-                                                    for (f = 1; f <= range; f++) {
-                                                        if (f == 0) {
-                                                            continue;
-                                                        } else if ((a * a - b * b + c * c - d * d - e * e + f * f == 0) && (a * b + c * d - e * f == 0)) {
-                                                            solution([a, b, c, d, e, f]);
-                                                        }
-                                                    }
-
-                                            }
-
-                                    }
-
+                for (b = 1; b <= range; b++) {
+                    for (c = a; c <= range; c++) {
+                        for (d = 1; d <= range; d++) {
+                            for (e = 1; e <= range; e++) {
+                                f = (a * b + c * d) / e;
+                                if (f <= range && (f % 1) === 0 && f == Math.sqrt(e * e - a * a + b * b - c * c + d * d)) {
+                                    solution([a, b, c, d, e, f]);
+                                }
                             }
 
+                        }
+
                     }
+
+                }
 
             }
             console.log("A je hotovo.");
@@ -110,7 +106,7 @@
                         symbol[i] = "+i";
                     }
                 }
-                document.getElementById('results').innerHTML += "(" + arr[0] + symbol[0] + ")<sup>2</sup> + (" + arr[2] + symbol[1] + ")<sup>2</sup> = (" + + arr[4] + symbol[2] + ")<sup>2</sup><br>";
+                document.getElementById('results').innerHTML += "(" + arr[0] + symbol[0] + ")<sup>2</sup> + (" + arr[2] + symbol[1] + ")<sup>2</sup> = (" + +arr[4] + symbol[2] + ")<sup>2</sup><br>";
             }
         }
 
@@ -137,23 +133,25 @@
         }
 
         function check() {
-          range = parseInt(document.getElementById('rng').value);
+            range = parseInt(document.getElementById('rng').value);
             if ((range >= 2) && (range <= 500)) {
                 document.getElementById('results').innerHTML = "";
                 DoIt();
             }
         }
-
     </script>
 </head>
 
 <body>
-    <br><div id="kappa">(a+bi)<sup>2</sup> + (c+di)<sup>2</sup> = (e+fi)<sup>2</sup></div>
+    <br>
+    <div id="kappa">(a+bi)<sup>2</sup> + (c+di)<sup>2</sup> = (e+fi)<sup>2</sup></div>
     <div id="kappa">Ve výsledcích bude a, b, c, d, e, f náležet pouze přirozeným číslům</div>
     <div id="kappa">A to protože ke všem výsledkům které obsahují záporné číslo se lze dostat z výsledků s přirozenými čísly za použití těchto dvou vzorců:</div>
-    <div id="kappa">(a+bi)<sup>2</sup> = (-a-bi)<sup>2</sup> a (a+bi)<sup>2</sup> = -(-b+ai)<sup>2</sup></div>
-    <br><div id="kappa">Rozsah čísel:</div>
-    <div class="cont"><input id="rng" autofocus type="number" autocomplete="off" min="2"></input></div>
+    <div id="kappa">(a+bi)<sup>2</sup> = (-a-bi)<sup>2</sup> <br> (a+bi)<sup>2</sup> = -(-b+ai)<sup>2</sup></div>
+    <br>
+    <div id="kappa">Rozsah čísel:</div>
+    <div class="cont"><input id="rng" autofocus type="number" autocomplete="off" min="2"></input>
+    </div>
     <div id="kappa"><button onclick="check()">Spustit</button></div>
     <div id="results" text-align="center"></div>
 </body>
