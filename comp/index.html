@@ -64,13 +64,21 @@
         }
     </style>
     <script>
-        var range = 10;
-        var values = [];
-        var symbol = [];
-        var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233,
-            239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499
+        var range;
+        var values, factors, symbol = [];
+        var primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101];
+        var triple = [
+            [3, 4, 5],
+            [5, 12, 13],
+            [7, 24, 25],
+            [8, 15, 17],
+            [9, 40, 41],
+            [11, 60, 61],
+            [12, 35, 37],
+            [16, 63, 65],
+            [20, 21, 29],
+            [28, 45, 53]
         ];
-        var factors = [];
 
         function DoIt() {
             for (a = 1; a <= range; a++) {
@@ -111,21 +119,36 @@
         }
 
 
-        function findFactors(num) {
+        function findFactors(num, arr) {
             var res = []
-            for (i = 0; num >= primes[i]; i++) {
-                if (num / primes[i] == Math.floor(num / primes[i])) {
-                    res.push(primes[i])
+            if (arr[0] == 2) {
+                for (i = 0; num >= arr[i]; i++) {
+                    if ((num / arr[i]) % 1 == 0) {
+                        res.push(arr[i])
+                    }
+                }
+            } else {
+                for (i = 0; num >= arr[i][0]; i++) {
+                    if ((num / arr[i][0]) % 1 == 0) {
+                        res.push(arr[i])
+                    }
                 }
             }
             return res;
         }
 
         function eliminate(arr) {
-            factors = findFactors(Math.min(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]));
+            factors = findFactors(Math.min(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5]), primes);
             for (i = 0; i < factors.length; i++) {
                 test = factors[i];
                 if (arr[0] % test == 0 && arr[1] % test == 0 && arr[2] % test == 0 && arr[3] % test == 0 && arr[4] % test == 0 && arr[5] % test == 0) {
+                    return false;
+                }
+            }
+            factors = findFactors(arr[0], triple);
+            for (i = 0; i < factors.length; i++) {
+                test = factors[i];
+                if (arr[0] % test[0] == 0 && arr[1] % test[0] == 0 && arr[2] % test[1] == 0 && arr[3] % test[1] == 0 && arr[4] % test[2] == 0 && arr[5] % test[2] == 0) {
                     return false;
                 }
             }
@@ -134,7 +157,7 @@
 
         function check() {
             range = parseInt(document.getElementById('rng').value);
-            if ((range >= 2) && (range <= 500)) {
+            if ((range >= 2) && (range <= 100)) {
                 document.getElementById('results').innerHTML = "";
                 DoIt();
             }
