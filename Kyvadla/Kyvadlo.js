@@ -1,4 +1,4 @@
-function Kyvadlo(defx, defy, mod1, mod2) {
+function Kyvadlo(defx, defy, i) {
   this.defx = defx;
   this.defy = defy;
   this.x = defx;
@@ -32,7 +32,7 @@ function Kyvadlo(defx, defy, mod1, mod2) {
   }
 
   this.pos = function() {
-    this.spot = mod1*sin(t) + mod2*sin(0.95*t);
+    this.spot = ratios[i][0]*mode1*sin(t) + ratios[i][1]*mode2*sin(0.95*t);
     this.y = defy*cos(atan(this.spot/defy));
     this.x = defx + this.spot - (defy-this.y)*this.spot/defy;
   }
