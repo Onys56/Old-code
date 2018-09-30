@@ -1,0 +1,70 @@
+﻿<html>
+ <head>
+  <meta charset="UTF-8" />
+  <title>Zlaťáčky z komise</title>
+  <style>
+    #overlay {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+    #profit {
+      font-size: 15em;
+      color: #f22eee;
+      display: none;
+      animation-name: rainbow;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+    #start {
+      font-size: 2em;
+    }
+    body {
+      position: relative;
+      margin: 0;
+    }
+    .flag {
+      width: 100%;
+      height: 16.67%;
+    }
+    @keyframes rainbow {
+      0%   {font-size: 15em}
+      50% {font-size: 5em}
+      100% {font-size: 15em}
+    }
+  </style>
+ </head>
+ <body>
+  <div id="background">
+    <div class="flag" style="background-color: red;"></div>
+    <div class="flag" style="background-color: orange;"></div>
+    <div class="flag" style="background-color: yellow;"></div>
+    <div class="flag" style="background-color: green;"></div>
+    <div class="flag" style="background-color: blue;"></div>
+    <div class="flag" style="background-color: purple;"></div>
+  </div>
+  <div id="overlay"><h1 id="profit">0.00Kč</h1><button id="start" onclick="start()">Start</div>
+ </body>
+ <script>
+  var startTime;
+  var gainPerMs = 0.00003125;
+
+  function start() {
+      document.getElementById('start').style.display = "none";
+      document.getElementById('profit').style.display = "block";
+      d = new Date();
+      startTime = d.getTime();
+      setInterval(update ,100);
+  }
+
+  function update() {
+    d = new Date();
+    diff = d.getTime() - startTime;
+    profit = Math.trunc(diff*gainPerMs*100)/100;
+    document.getElementById('profit').innerHTML = profit + "Kč";
+  }
+ </script>
+</html>
