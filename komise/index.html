@@ -1,4 +1,4 @@
-﻿<html>
+﻿<html onmouseenter="active = true" onmouseleave="active = false">
  <head>
   <meta charset="UTF-8" />
   <title>Zlaťáčky z komise</title>
@@ -49,6 +49,7 @@
   <div id="overlay"><h1 id="profit">0.00Kč</h1><button id="start" onclick="start()">Start</div>
  </body>
  <script>
+  var active;
   var startTime;
   var gainPerMs = 0.00003125;
 
@@ -61,6 +62,7 @@
   }
 
   function update() {
+   if(active) {
     d = new Date();
     diff = d.getTime() - startTime;
     profit = Math.trunc(diff*gainPerMs*100)/100;
