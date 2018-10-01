@@ -12,10 +12,10 @@
       z-index: 10;
     }
     #profit {
-      font-size: 15em;
+      font-size: 10em;
       color: #f22eee;
       display: none;
-      animation-name: rainbow;
+      animation-name: zoom;
       animation-duration: 5s;
       animation-iteration-count: infinite;
     }
@@ -30,14 +30,17 @@
       width: 100%;
       height: 16.67%;
     }
-    @keyframes rainbow {
-      0%   {font-size: 15em}
-      50% {font-size: 5em}
-      100% {font-size: 15em}
+    @keyframes zoom {
+      0%   {font-size: 5em}
+      50% {font-size: 15em}
+      100% {font-size: 5em}
+    }
+    .noanimation {
+      animation-name: none !important;
     }
   </style>
  </head>
- <body onmouseenter="var active = true" onmouseleave="var active = false">
+ <body onmouseenter="activate()" onmouseleave="deactivate()">
   <div id="background">
     <div class="flag" style="background-color: red;"></div>
     <div class="flag" style="background-color: orange;"></div>
@@ -46,28 +49,45 @@
     <div class="flag" style="background-color: blue;"></div>
     <div class="flag" style="background-color: purple;"></div>
   </div>
-  <div id="overlay"><h1 id="profit">0.00Kč</h1><button id="start" onclick="start()">Start</div>
+  <div id="overlay"><span id="majk2">Jsem Majk</span><input type="checkbox" id="majk"><br><h1 id="profit">0.00Kč</h1><button id="start" onclick="start()">Start</div>
  </body>
  <script>
   var active = true;
-  var startTime;
-  var gainPerMs = 0.00003125;
+  var startTime, gainPerMs;
 
   function start() {
       document.getElementById('start').style.display = "none";
+      document.getElementById('majk').style.display = "none";
+      document.getElementById('majk2').style.display = "none";
       document.getElementById('profit').style.display = "block";
+      if(document.getElementById('majk').checked) {
+        gainPerMs = 2100/(16*3600000);
+      } else {
+        gainPerMs = 1800/(16*3600000);
+      }
+      var interval = 1/(100*gainPerMs)
       d = new Date();
       startTime = d.getTime();
-      setInterval(update ,100);
+      setInterval(update ,interval);
   }
 
   function update() {
    if(active) {
     d = new Date();
     diff = d.getTime() - startTime;
-    profit = Math.trunc(diff*gainPerMs*100)/100;
+    profit = Math.round(diff*gainPerMs*100)/100;
     document.getElementById('profit').innerHTML = profit + "Kč";
    }
+  }
+
+  function activate() {
+    active = true;
+    document.getElementById("profit").classList.remove('noanimation');
+  }
+
+  function deactivate() {
+    active = false;
+    document.getElementById("profit").classList.add('noanimation');
   }
  </script>
 </html>
