@@ -37,7 +37,7 @@
     }
   </style>
  </head>
- <body onmouseenter="active = true" onmouseleave="active = false">
+ <body onmouseenter="var active = true" onmouseleave="var active = false">
   <div id="background">
     <div class="flag" style="background-color: red;"></div>
     <div class="flag" style="background-color: orange;"></div>
@@ -49,7 +49,7 @@
   <div id="overlay"><h1 id="profit">0.00Kč</h1><button id="start" onclick="start()">Start</div>
  </body>
  <script>
-  var active;
+  var active = true;
   var startTime;
   var gainPerMs = 0.00003125;
 
