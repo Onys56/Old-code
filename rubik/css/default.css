@@ -1,0 +1,21 @@
+﻿td {
+    border: 1px solid black;
+    width: 64px;
+    height: 64px;
+    padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.blank {
+  border: 0;
+}
+
+.c0 {background-color: rgb(1, 150, 1)}
+.c1 {background-color: rgb(0, 0, 173)}
+.c2 {background-color: orangered}
+.c3 {background-color: rgb(199, 13, 13)}
+.c4 {background-color: black}
+.c5 {background-color: rgb(214, 214, 9)}
