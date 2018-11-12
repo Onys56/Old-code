@@ -45,6 +45,9 @@ function update(piecesToUpdate) {
 
 // Creating the pieces in their solved state
 function startup() {
+  pieces = [];
+  edges = [];
+  corners = [];
   // Creating pieces and assigning coordinates excluding the middle pieces (those that have 1 in at lest 2 places)
   for (i = 0; i < 3; i++) {
     for (j = 0; j < 3; j++) {
@@ -271,4 +274,11 @@ function transform(algorithm, rotate, flip) {
     }
   }
   return output;
+}
+
+startup();
+
+document.getElementById("startAlgorithm").onclick = function() {
+  var selctedAlgorithm = document.getElementById("selectAlgorithm").value;
+  doAlgorithm(window[selctedAlgorithm], 250);
 }

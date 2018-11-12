@@ -1,16 +1,45 @@
-﻿td {
+﻿#cube td {
     border: 1px solid black;
     width: 64px;
     height: 64px;
     padding: 0;
 }
 
-table {
+#cube {
   border-collapse: collapse;
+  margin: 8px;
+}
+
+#interface {
+	position: relative;
+	left: 800px ;
+	bottom: 293px;
+	transform: translate(0, -50%);
+}
+
+body {
+  margin: 0;
 }
 
 .blank {
-  border: 0;
+  border: 0 !important;
+}
+
+#interface td, #interface button {
+	width: 75px;
+	height: 50px;
+	font-size: 30px;
+}
+
+.dropdown, .dropdown select, .wide {
+	width: 150px !important;
+	height: 20px !important;
+}
+
+#startAlgorithm, .wideButton {
+	height: 25px !important;
+	width: 150px !important;
+	font-size: 15px !important;
 }
 
 .c0 {background-color: rgb(1, 150, 1)}

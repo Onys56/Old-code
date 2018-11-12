@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <table>
+  <table id="cube">
     <tr>
       <td rowspan="3" colspan="3" class="blank"></td>
       <td id="0021"></td>
@@ -89,7 +89,23 @@
       <td id="2221"></td>
     </tr>
   </table>
+  <table id="interface">
+  	  <tr><td><button onclick="R()">R</button></td> <td><button onclick="Rp()">R'</button></td></tr>
+  	  <tr><td><button onclick="L()">L</button></td> <td><button onclick="Lp()">L'</button></td></tr>
+  	  <tr><td><button onclick="F()">F</button></td> <td><button onclick="Fp()">F'</button></td></tr>
+  	  <tr><td><button onclick="B()">B</button></td> <td><button onclick="Bp()">B'</button></td></tr>
+  	  <tr><td><button onclick="U()">U</button></td> <td><button onclick="Up()">U'</button></td></tr>
+  	  <tr><td><button onclick="D()">D</button></td> <td><button onclick="Dp()">D'</button></td></tr>
+  	  <tr><td colspan="2" class="dropdown">
+  	  	<select id="selectAlgorithm">
+  	  		<option value="cubeInACube">Cube in a cube</option>
+  	  		<option value="cross">Cross</option>
+  	  		<option value="stripeDot">Sripe and dot</option>
+  	  	</select>
+  	  </td></tr>
+  	  <tr><td colspan="2" class="dropdown"><button id="startAlgorithm">Start algorithm</button></td></tr>
+  	  <tr><td colspan="2" class="wide"><button class="wideButton" onclick="startup()">Reset cube</button></td></tr>
+  </table>
   <script src="js/main.js"></script>
 </body>
-
 </html>
